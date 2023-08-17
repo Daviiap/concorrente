@@ -1,0 +1,5 @@
+sem = Semaphore(0)
+
+threadA():                | threadB():
+    a1()                  |     sem.wait()
+    sem.signal()          |     b1()

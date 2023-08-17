@@ -1,0 +1,22 @@
+mutex = Semaphore(1)
+producerSem = Semaphore(n)
+consumerSem = Semaphore(0)
+int buffer[n]
+
+consumer():
+    for():
+        consumerSem.wait()
+        mutex.wait()
+            consume(buffer)
+        mutex.signal()
+        producerSem.signal()
+
+
+
+producer():
+    for():
+        producerSem.wait()
+        mutex.wait()
+            produce(buffer)
+        mutex.signal()
+        consumerSem.signal()

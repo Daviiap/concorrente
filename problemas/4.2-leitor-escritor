@@ -1,0 +1,34 @@
+lightswitch_counter = 0
+lightswitch_mutex = Semaphore(1)
+
+lock_lightswitch(semaphore):
+    lightswitch_mutex.wait()
+    lightswitch_counter += 1
+    if lightswitch_counter == 1:
+        semaphore.wait()
+    lightswitch_mutex.signal()
+
+unlock_lightswitch(semaphore):
+    lightswitch_mutex.wait()
+    lightswitch_counter -= 1
+    if lightswitch_counter == 0:
+        semaphore.signal()
+    lightswitch_mutex.signal()
+
+roomEmpty = Semaphore(1)
+turnstile = Semaphore(1)
+
+write():
+     turnstile.wait()
+        roomEmpty.wait()
+        // WRITE SOMETHING
+     turnstile.signal()
+    
+     roomEmpty.signal()
+
+read():
+    turnstile.wait()
+    turnstile.signal()
+    lock_lightswitch(roomEmpty)
+        // READ SOMETHING
+    unlock_lightswitch(roomEmpty)

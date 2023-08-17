@@ -1,0 +1,23 @@
+mutex = Semaphore(1);
+turnstile = Semaphore(0);
+turnstile2 = Semaphore(1);
+int count = 0;
+int n = N;
+
+wait():
+    mutex.wait()
+        count++
+        if count == n:
+            turnstile2.wait()
+            turnstile.signal()
+    mutex.signal()
+    turnstile.wait()
+    turnstile.signal()
+    mutex.wait()
+        count--
+        if count == 0:
+            turnstile.wait()
+            turnstile2.signal()
+    mutex.signal()
+    turnstile2.wait()
+    turnstile2.signal()

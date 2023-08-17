@@ -1,0 +1,5 @@
+mutex = Semaphore(1)
+
+mutex.wait()
+a()
+mutex.signal()

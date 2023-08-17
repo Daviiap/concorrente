@@ -1,0 +1,6 @@
+int n = N // Número de threads que podem acessar a região crítica
+mutex = Semaphore(n)
+
+mutex.wait()
+a()
+mutex.signal()

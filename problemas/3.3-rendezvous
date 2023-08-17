@@ -1,0 +1,8 @@
+aArrived = Semaphore(0)
+bArrived = Semaphore(0)
+
+threadA():                | threadB():
+    a1()                  |     b1()
+    aArrived.signal()     |     bArrived.signal()
+    bArrived.wait()       |     aArrived.wait()
+    a2()                  |     b2()

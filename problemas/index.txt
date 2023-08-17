@@ -1,0 +1,10 @@
+3.1 - Sinalização
+3.3 - Rendezvous
+3.4 - Mutex
+3.5 - Multiplex
+3.6 - Barreira
+3.8 - Fila
+4.1 - Produtor-Consumidor
+4.2 - Leitor-Escritor
+4.3 - No-starve Mutex
+4.4 - Jantar dos filosofos

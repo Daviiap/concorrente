@@ -1,0 +1,31 @@
+leaders = 0
+followers = 0
+mutex = Semaphore(1)
+leaderQueue = Semaphore(0)
+followerQueue = Semaphore(0)
+rendezvous = Semaphore(0)
+
+leader():
+    mutex.wait()
+    if followers > 0:
+        followers--
+        followerQueue.signal()
+    else :
+        leaders++
+        mutex.signal()
+        leaderQueue.wait()
+    dance()
+    rendezvous.wait()
+    mutex.signal()
+
+follower():
+    mutex.wait()
+    if leaders > 0:
+        leaders--
+        leaderQueue.signal()
+    else :
+        followers++
+        mutex.signal()
+        followerQueue.wait()
+    dance()
+    rendezvous.signal()

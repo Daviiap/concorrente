@@ -1,0 +1,12 @@
+leaderQueue = Semaphore(0)
+followerQueue = Semaphore(0)
+
+leader():
+    followerQueue.signal()
+    leaderQueue.wait()
+    dance()
+
+follower():
+    leaderQueue.signal()
+    followerQueue.wait()
+    dance()
